@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
+  post 'api/v1/ghpayload' => 'api/v1/gh_payloads#payload'
+  post 'api/v1/circlepayload' => 'api/v1/circle_payloads#payload'
+
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
