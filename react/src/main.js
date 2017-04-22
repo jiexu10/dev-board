@@ -2,9 +2,11 @@ import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import BoardApp from './components/boardApp.jsx';
+
 $(function() {
   ReactDOM.render(
-    <h1>Boo yaa</h1>,
+    <BoardApp />,
     document.getElementById('app')
   );
 });
