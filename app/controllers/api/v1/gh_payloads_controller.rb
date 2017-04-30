@@ -4,7 +4,11 @@ class Api::V1::GhPayloadsController < ApplicationController
     payload_body = request.body.read
     verify_signature(payload_body)
     push = JSON.parse(payload_body)
-    "I got some JSON: #{push.inspect}"
+
+    firebase = Firebase::Client.new(ENV['FIREBASE_URL'])
+    if request.env['HTTP_X_GITHUB_EVENT'] == 'pull_request'
+      firebase.push('gh_events', Firebase::Github::PullRequestSerializer.new(push).params)
+    end
 
     return head(:ok)
   end
