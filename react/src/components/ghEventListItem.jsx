@@ -1,5 +1,4 @@
 import React from 'react';
-import Firebase from 'firebase';
 
 export default class GhEventListItem extends React.Component {
   constructor(props){
