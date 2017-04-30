@@ -12,6 +12,7 @@ export default class GhEventList extends React.Component {
 
     this.createItem = this.createItem.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.loadSnapshotData = this.loadSnapshotData.bind(this);
   }
 
   loadListsFromServer(){
@@ -28,11 +29,16 @@ export default class GhEventList extends React.Component {
     var data = [];
     let ref = firebase.database().ref("gh_events");
     ref.on('value', (snapshot) => {
-      var listsObj = snapshot.val();
-      for(var i in listsObj)
-        data.push({key: i, value: listsObj[i]});
-      this.setState({lists: data});
+      this.loadSnapshotData(snapshot.val());
     });
+  }
+
+  loadSnapshotData(snapshotData){
+    var data = [];
+    var listsObj = snapshotData;
+    for(var i in listsObj)
+      data.push({key: i, value: listsObj[i]});
+    this.setState({lists: data});
   }
 
   handleClick(event){
