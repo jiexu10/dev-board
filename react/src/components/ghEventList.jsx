@@ -1,6 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 import Firebase from 'firebase';
+import GhEventListItem from './ghEventListItem.jsx';
 
 export default class GhEventList extends React.Component {
   constructor(props){
@@ -31,7 +32,6 @@ export default class GhEventList extends React.Component {
       for(var i in listsObj)
         data.push({key: i, value: listsObj[i]});
       this.setState({lists: data});
-      console.log(this);
     });
   }
 
@@ -44,11 +44,7 @@ export default class GhEventList extends React.Component {
   }
 
   createItem(item){
-    return(
-      <li key={item.key}>
-        {item.value}
-      </li>
-    )
+    return <GhEventListItem key={item.key} data={item.value} />
   }
 
   render(){
