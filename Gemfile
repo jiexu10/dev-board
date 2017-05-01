@@ -1,6 +1,5 @@
 source "https://rubygems.org"
 
-gem "coffee-rails", "~> 4.1.0"
 gem "foundation-rails"
 gem "haml-rails"
 gem "jbuilder", "~> 2.0"
