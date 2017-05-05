@@ -11,7 +11,6 @@ export default class GhEventList extends React.Component {
     }
 
     this.createItem = this.createItem.bind(this);
-    this.handleClick = this.handleClick.bind(this);
     this.loadSnapshotData = this.loadSnapshotData.bind(this);
   }
 
@@ -41,12 +40,12 @@ export default class GhEventList extends React.Component {
     this.setState({lists: data});
   }
 
-  handleClick(event){
-    this.props.onListClicked(event);
-  }
-
   componentDidMount(){
     this.loadListsFromServer();
+  }
+
+  componentDidUpdate(){
+    var elem = new Foundation.Accordion($('.gh-event-lists'));
   }
 
   createItem(item){
@@ -57,7 +56,7 @@ export default class GhEventList extends React.Component {
     return(
       <div>
         <section>
-          <ul className='gh-event-lists'>
+          <ul className='gh-event-lists accordion' data-accordion data-multi-expand='true' data-allow-all-closed='true'>
             {this.state.lists.map(this.createItem)}
           </ul>
         </section>

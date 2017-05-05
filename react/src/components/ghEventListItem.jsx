@@ -7,8 +7,11 @@ export default class GhEventListItem extends React.Component {
 
   render(){
     return (
-      <li key={this.props.data.name}>
-        {this.props.data.action} {this.props.data.title}
+      <li key={this.props.data.name} className='accordion-item' data-accordion-item>
+        <a href='#' className='accordion-title'>{this.props.data.action} {this.props.data.title}</a>
+        <div className='accordion-content' data-tab-content>
+          <p>some thing here</p>
+        </div>
       </li>
     )
   }
