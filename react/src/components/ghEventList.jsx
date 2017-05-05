@@ -54,7 +54,7 @@ export default class GhEventList extends React.Component {
 
   render(){
     return(
-      <div>
+      <div className='row'>
         <section>
           <ul className='gh-event-lists accordion' data-accordion data-multi-expand='true' data-allow-all-closed='true'>
             {this.state.lists.map(this.createItem)}
