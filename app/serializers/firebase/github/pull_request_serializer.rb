@@ -3,9 +3,11 @@ class Firebase::Github::PullRequestSerializer < Firebase::Github::Serializer
     params = super
 
     pull_request_params = {
+      id: response_body['pull_request']['id'],
       title: response_body['pull_request']['title'],
-      merge: response_body['pull_request']['merge'],
-      mergeable: response_body['pull_request']['mergeable']
+      state: response_body['pull_request']['state'],
+      merged: response_body['pull_request']['merged'],
+      comments: response_body['pull_request']['comments']
     }
 
     params.merge(pull_request_params)
