@@ -8,7 +8,7 @@ class Api::V1::GhPayloadsController < ApplicationController
     firebase = Firebase::Client.new(ENV['FIREBASE_URL'])
     if request.env['HTTP_X_GITHUB_EVENT'] == 'pull_request'
       serialized_params = Firebase::Github::PullRequestSerializer.new(push).params
-      existing_event = firebase.get('gh_events', id: serializer_params[:id])
+      existing_event = firebase.get('gh_events', id: serialized_params[:id])
       if existing_event.present?
         firebase.update('gh_events', serialized_params)
       else
