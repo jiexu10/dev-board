@@ -9,6 +9,7 @@ gem "rails"
 gem "sass-rails", "~> 5.0"
 gem "sdoc", "~> 0.4.0", group: :doc
 gem 'firebase'
+gem 'octicons_helper'
 
 group :development, :test do
   gem "dotenv-rails"

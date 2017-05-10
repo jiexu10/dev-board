@@ -125,6 +125,11 @@ GEM
     multi_json (1.11.3)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+    octicons (3.0.1)
+      nokogiri (>= 1.6.3.1)
+    octicons_helper (3.0.1)
+      octicons (~> 3.0)
+      rails
     pg (0.18.4)
     pry (0.10.3)
       coderay (~> 1.1.0)
@@ -255,6 +260,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   launchy
+  octicons_helper
   pg
   pry-rails
   puma
