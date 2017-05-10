@@ -7,7 +7,7 @@ class Firebase::Github::PullRequestSerializer < Firebase::Github::Serializer
       title: response_body['pull_request']['title'],
       state: response_body['pull_request']['state'],
       merged: response_body['pull_request']['merged'],
-      comments: response_body['pull_request']['comments']
+      comments: response_body['pull_request']['comments'],
       body: response_body['pull_request']['body']
     }
 
