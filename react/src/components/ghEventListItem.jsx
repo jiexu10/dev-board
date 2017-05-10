@@ -16,7 +16,7 @@ export default class GhEventListItem extends React.Component {
           <span className="text-bold">{this.props.data.comments}</span>
         </a>
         <div className='accordion-content' data-tab-content>
-          <p>some thing here</p>
+          <p>{this.props.data.body}</p>
         </div>
       </li>
     )
