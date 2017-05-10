@@ -12,5 +12,10 @@
     = csrf_meta_tag
 
   %body
+    = render partial: 'top_bar'
 
-    = yield
+    .callout.primary
+      %h5
+        = image_tag('GitHub-Mark-32px.png', class: 'github-logo')
+        = image_tag('GitHub_Logo.png', class: 'github-text')
+      = yield
