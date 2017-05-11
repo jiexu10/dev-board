@@ -3,23 +3,27 @@ class Api::V1::GhPayloadsController < ApplicationController
     request.body.rewind
     payload_body = request.body.read
     verify_signature(payload_body)
-    push = JSON.parse(payload_body)
+    @push = JSON.parse(payload_body)
 
-    firebase = Firebase::Client.new(ENV['FIREBASE_URL'])
-    if request.env['HTTP_X_GITHUB_EVENT'] == 'pull_request'
-      serialized_params = Firebase::Github::PullRequestSerializer.new(push).params
-      existing_event = firebase.get('gh_events', { orderBy: '"id"', equalTo: serialized_params[:id] }).body
-      if existing_event.keys.any?
-        firebase.update("gh_events/#{existing_event.keys.first}", serialized_params)
-      else
-        firebase.push('gh_events', serialized_params)
-      end
-    end
+    push_payload_to_firebase
 
     return head(:ok)
   end
 
   private
+
+  def push_payload_to_firebase
+    return unless request.env['HTTP_X_GITHUB_EVENT'] == 'pull_request'
+
+    firebase = Firebase::Client.new(ENV['FIREBASE_URL'])
+    serialized_params = Firebase::Github::PullRequestSerializer.new(@push).params
+    existing_event = firebase.get('gh_events', { orderBy: '"id"', equalTo: serialized_params[:id] }).body
+    if existing_event.keys.any?
+      firebase.update("gh_events/#{existing_event.keys.first}", serialized_params)
+    else
+      firebase.push('gh_events', serialized_params)
+    end
+  end
 
   def verify_signature(payload_body)
     signature = 'sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), ENV['GH_SECRET_TOKEN'], payload_body)
