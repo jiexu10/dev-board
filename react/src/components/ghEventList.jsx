@@ -14,6 +14,7 @@ export default class GhEventList extends React.Component {
     this.loadSnapshotData = this.loadSnapshotData.bind(this);
   }
 
+  // pull the gh_events ref from Firebase using the config provided here
   loadListFromServer(){
     var config = {
       apiKey: "AIzaSyBhi9VrRiukZtuN2z4kbR8Kv836jxp4H4Y",
@@ -30,6 +31,7 @@ export default class GhEventList extends React.Component {
     });
   }
 
+  // store the data from the snapshot into the component state
   loadSnapshotData(snapshotData){
     var data = [];
     var listObj = snapshotData;
@@ -42,14 +44,17 @@ export default class GhEventList extends React.Component {
     this.loadListFromServer();
   }
 
+  // initialize the accordion element after the components load on page
   componentDidUpdate(){
     var elem = new Foundation.Accordion($('.gh-event-list'));
   }
 
+  // render the child components
   createItem(item){
     return <GhEventListItem key={item.key} data={item.value} />
   }
 
+  // set up the accordion element for each item in the list
   render(){
     return(
       <div className='row'>

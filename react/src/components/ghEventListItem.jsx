@@ -8,6 +8,7 @@ export default class GhEventListItem extends React.Component {
     this.reviewClass = this.reviewClass.bind(this);
   }
 
+  // decide what the CSS class should be for the pull request icon
   pullRequestClass(){
     var pullRequestClassName
     if (this.props.data.merged == true) {
@@ -18,10 +19,12 @@ export default class GhEventListItem extends React.Component {
     return pullRequestClassName;
   }
 
+  // decide what the CSS class should be for the review icon
   reviewClass(){
     return this.props.data.review ? "visible" : "invisible";
   }
 
+  // render accordion item in list with appropriate icons generated using the octicon_helper
   render(){
     return (
       <li key={this.props.data.name} className="accordion-item" data-accordion-item>
