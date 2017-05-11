@@ -2,13 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::GhPayloadsController, type: :controller do
   describe "POST payloads" do
-    it "return JSON with all data" do
-      post :payloads, { some_key: 'hi' }
+    it "accepts a payload" do
+      allow_any_instance_of(Api::V1::GhPayloadsController).to receive(:verify_signature).and_return(true)
+      post :payload, { 'some_key' => 'hi' }.to_json
+
       expect(response).to be_success
-      # json = JSON.parse(response.body)
-      #
-      # expect(json['crms']).to eql(DeliverySetting.display_names)
-      # expect(json['raters']).to eql(Rater.display_names)
     end
   end
 end
