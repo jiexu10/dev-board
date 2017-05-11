@@ -7,21 +7,19 @@ export default class GhEventList extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      lists: []
+      list: []
     }
 
     this.createItem = this.createItem.bind(this);
     this.loadSnapshotData = this.loadSnapshotData.bind(this);
   }
 
-  loadListsFromServer(){
+  loadListFromServer(){
     var config = {
       apiKey: "AIzaSyBhi9VrRiukZtuN2z4kbR8Kv836jxp4H4Y",
       authDomain: "dev-board-971fe.firebaseapp.com",
       databaseURL: "https://dev-board-971fe.firebaseio.com",
-      projectId: "dev-board-971fe",
-      storageBucket: "dev-board-971fe.appspot.com",
-      messagingSenderId: "530680591035"
+      storageBucket: "dev-board-971fe.appspot.com"
     };
     var firebase = new Firebase.initializeApp(config);
 
@@ -34,18 +32,18 @@ export default class GhEventList extends React.Component {
 
   loadSnapshotData(snapshotData){
     var data = [];
-    var listsObj = snapshotData;
-    for(var i in listsObj)
-      data.push({key: i, value: listsObj[i]});
-    this.setState({lists: data});
+    var listObj = snapshotData;
+    for(var i in listObj)
+      data.push({key: i, value: listObj[i]});
+    this.setState({list: data});
   }
 
   componentDidMount(){
-    this.loadListsFromServer();
+    this.loadListFromServer();
   }
 
   componentDidUpdate(){
-    var elem = new Foundation.Accordion($('.gh-event-lists'));
+    var elem = new Foundation.Accordion($('.gh-event-list'));
   }
 
   createItem(item){
@@ -56,8 +54,8 @@ export default class GhEventList extends React.Component {
     return(
       <div className='row'>
         <section>
-          <ul className='gh-event-lists accordion' data-accordion data-multi-expand='true' data-allow-all-closed='true'>
-            {this.state.lists.map(this.createItem)}
+          <ul className='gh-event-list accordion' data-accordion data-multi-expand='true' data-allow-all-closed='true'>
+            {this.state.list.map(this.createItem)}
           </ul>
         </section>
       </div>
