@@ -2,6 +2,7 @@ class Firebase::Github::PullRequestSerializer < Firebase::Github::Serializer
   def params
     params = super
 
+    # select fields to store in firebase
     pull_request_params = {
       id: response_body['pull_request']['id'],
       title: response_body['pull_request']['title'],

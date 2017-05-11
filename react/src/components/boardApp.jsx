@@ -7,6 +7,7 @@ export default class BoardApp extends BaseComponent {
     super(props);
   }
 
+  // render the board
   render(){
     return(
       <div id='board-app' className='board-app-main-container'>
