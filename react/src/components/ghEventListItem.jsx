@@ -8,7 +8,7 @@ export default class GhEventListItem extends React.Component {
     this.reviewClass = this.reviewClass.bind(this);
   }
 
-  pullRequestClass() {
+  pullRequestClass(){
     var pullRequestClassName
     if (this.props.data.merged == true) {
       pullRequestClassName = "merged";
@@ -18,7 +18,7 @@ export default class GhEventListItem extends React.Component {
     return pullRequestClassName;
   }
 
-  reviewClass() {
+  reviewClass(){
     return this.props.data.review ? "visible" : "invisible";
   }
 
