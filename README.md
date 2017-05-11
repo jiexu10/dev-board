@@ -6,6 +6,12 @@ The purpose is to provide a unified interface to view information related to dev
 
 It is possible to set DevBoard up to track any Github repository as long as the requisite setup is performed.
 
+```
+1. Clone this repository
+2. Run `npm install` to install dependencies defined in package.json
+3. Run `bundle install` to install dependencies defined in Gemfile
+```
+
 #### **Github Setup**
 
 This project relies on the Webhooks provided by Github, with settings as shown below.  For a new setup, the secret can be generated using the example shown in the Github docs (https://developer.github.com/webhooks/securing/) and then set as ENV`GH_SECRET_TOKEN`.
