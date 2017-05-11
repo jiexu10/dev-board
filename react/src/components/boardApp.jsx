@@ -5,9 +5,6 @@ import GhEventList from './ghEventList.jsx';
 export default class BoardApp extends BaseComponent {
   constructor(props){
     super(props);
-    this.state = {
-      message: 'hello world'
-    }
   }
 
   render(){
